@@ -2572,7 +2572,7 @@ document.getElementById('tabMonteCarlo').addEventListener('click', () => switchT
 document.getElementById('tabVictory').addEventListener('click', () => switchTab('victory'));
 
 /* ===== INITIALIZATION ===== */
-fetch('results.json')
+fetch('results.json?t=' + Date.now())
   .then(res => res.json())
   .then(liveResults => {
     for (const r in liveResults) {
