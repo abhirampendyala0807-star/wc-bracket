@@ -140,14 +140,32 @@ def main():
                 r_str = str(r)
                 m_str = str(m)
                 
+                match_data = {
+                    "winner": winner,
+                    "home": home_team,
+                    "away": away_team,
+                    "homeScore": hs,
+                    "awayScore": as_score,
+                    "homeScoreRaw": home_score_str,
+                    "awayScoreRaw": away_score_str
+                }
+                
                 if r_str not in results:
                     results[r_str] = {}
+                existing = results[r_str].get(m_str)
+                is_different = True
+                if isinstance(existing, dict):
+                    if (existing.get("winner") == winner and 
+                        existing.get("homeScore") == hs and 
+                        existing.get("awayScore") == as_score and
+                        existing.get("homeScoreRaw") == home_score_str and
+                        existing.get("awayScoreRaw") == away_score_str):
+                        is_different = False
                 
-                # Update winner if changed
-                if results[r_str].get(m_str) != winner:
-                    results[r_str][m_str] = winner
+                if is_different:
+                    results[r_str][m_str] = match_data
                     updated = True
-                    print(f"Updated Round {r} Match {m}: {home_team} vs {away_team} -> Winner: {winner}")
+                    print(f"Updated Round {r} Match {m}: {home_team} vs {away_team} -> Winner: {winner} (Score: {home_score_str}-{away_score_str})")
                     
         if updated:
             with open('results.json', 'w') as f:

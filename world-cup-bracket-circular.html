@@ -952,6 +952,99 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-top: 1px;
+  /* Match Results styles */
+  .results-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  .results-round-group {
+    margin-bottom: 25px;
+  }
+  .results-round-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    color: #cda434;
+    border-bottom: 1.5px solid rgba(205, 164, 52, 0.2);
+    padding-bottom: 6px;
+    margin-bottom: 15px;
+    letter-spacing: 0.05em;
+  }
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 12px;
+  }
+  .result-card {
+    background: rgba(22, 19, 14, 0.55);
+    border: 1px solid rgba(205, 164, 52, 0.12);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .result-team {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 40%;
+  }
+  .result-team.away {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+  .result-flag-img {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(205, 164, 52, 0.25);
+  }
+  .result-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.95rem;
+    color: #b8a888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .result-name.winner {
+    color: #cda434;
+    font-weight: 600;
+  }
+  .result-name.loser {
+    color: #706555;
+  }
+  .result-score-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+  }
+  .result-score {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 2px;
+  }
+  .result-shootout {
+    font-size: 0.68rem;
+    color: #8c7e6c;
+    margin-top: 1px;
+    white-space: nowrap;
+  }
+  .no-results-placeholder {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    color: #7a6e5e;
+    text-align: center;
+    padding: 30px;
+    background: rgba(22, 19, 14, 0.25);
+    border: 1px dashed rgba(205, 164, 52, 0.1);
+    border-radius: 8px;
   }
 </style>
 </head>
@@ -965,6 +1058,7 @@
   <button class="tab-btn" id="tabLeaderboard">Team Explorer & Elo</button>
   <button class="tab-btn" id="tabMonteCarlo">Monte Carlo Odds</button>
   <button class="tab-btn" id="tabVictory">Path to Victory</button>
+  <button class="tab-btn" id="tabResults">Match Results</button>
 </div>
 
 <div id="bracket-view">
@@ -1150,6 +1244,15 @@
   </div>
 </div>
 
+<!-- Match Results Section -->
+<div class="results-section" id="results-view" style="display: none;">
+  <h2>Match Center & Results</h2>
+  <div class="sub2">Completed games and official scores from the 2026 World Cup</div>
+  <div id="resultsLogContainer" style="margin-top: 20px;">
+    <!-- dynamic cards -->
+  </div>
+</div>
+
 <script>
 /* ===== DATA ===== */
 const TEAMS = {
@@ -1241,7 +1344,7 @@ function applyRealWinners() {
     for (let r = 0; r < 5; r++) {
       if (REAL_WINNERS[r]) {
         for (let [m, w] of Object.entries(REAL_WINNERS[r])) {
-          winners[r][+m] = w;
+          winners[r][+m] = (w && typeof w === 'object') ? w.winner : w;
         }
       }
     }
@@ -2241,6 +2344,46 @@ function showTeamProfile(teamName) {
   const card = document.getElementById('profileCard');
   if (!card) return;
   
+  // Compile tournament history for this team
+  let historyHtml = '';
+  const roundLabels = ["R32", "R16", "QF", "SF", "Finals"];
+  for (let r = 0; r < 5; r++) {
+    const numMatches = 16 / Math.pow(2, r);
+    for (let m = 0; m < numMatches; m++) {
+      const winner = (r < 4) ? winners[r][m] : winners[4][0];
+      if (!winner) continue;
+      
+      const teamA = bracket[r][m][0];
+      const teamB = bracket[r][m][1];
+      if (teamA !== teamName && teamB !== teamName) continue;
+      
+      const opp = (teamA === teamName) ? teamB : teamA;
+      const isWinner = (winner === teamName);
+      
+      let scoreText = "";
+      const realMatch = (REAL_WINNERS[r] && REAL_WINNERS[r][m]);
+      if (realMatch && typeof realMatch === 'object') {
+        const hRaw = realMatch.homeScoreRaw || String(realMatch.homeScore);
+        const aRaw = realMatch.awayScoreRaw || String(realMatch.awayScore);
+        
+        if (realMatch.home === teamName) {
+          scoreText = `${hRaw}-${aRaw}`;
+        } else {
+          scoreText = `${aRaw}-${hRaw}`;
+        }
+      } else {
+        scoreText = isWinner ? "1-0" : "0-1";
+      }
+      
+      historyHtml += `
+        <div style="display:flex; justify-content:space-between; font-size:11px; padding:3px 0; border-bottom:1px solid rgba(255,255,255,0.03);">
+          <span style="color:#7a6e5e; font-weight:600;">${roundLabels[r]}</span>
+          <span style="color:${isWinner ? '#cda434' : '#706555'}; font-weight:${isWinner ? '600' : 'normal'};">vs ${opp} (${scoreText})</span>
+        </div>
+      `;
+    }
+  }
+
   card.classList.add('active');
   card.innerHTML = `
     <div class="profile-header">
@@ -2262,9 +2405,15 @@ function showTeamProfile(teamName) {
       </div>
     </div>
     <div class="profile-players-lbl">Key Players</div>
-    <div>
+    <div style="margin-bottom: 5px;">
       ${t.stars.map(p => `<div class="profile-player-item">${p}</div>`).join('')}
     </div>
+    ${historyHtml ? `
+      <div class="profile-players-lbl" style="margin-top:10px;">Match History</div>
+      <div style="margin-top:5px; max-height:120px; overflow-y:auto;">
+        ${historyHtml}
+      </div>
+    ` : ''}
   `;
 }
 
@@ -2538,13 +2687,102 @@ function calculateVictoryPath(teamName) {
   details.innerHTML = html;
 }
 
+function renderMatchResults() {
+  const container = document.getElementById('resultsLogContainer');
+  if (!container) return;
+  
+  const roundLabels = ["Round of 32", "Round of 16", "Quarter-finals", "Semi-finals", "Finals"];
+  let html = '';
+  let hasAnyResults = false;
+  
+  for (let r = 0; r < 5; r++) {
+    const numMatches = 16 / Math.pow(2, r);
+    let roundHtml = '';
+    
+    for (let m = 0; m < numMatches; m++) {
+      const winner = (r < 4) ? winners[r][m] : winners[4][0];
+      if (!winner) continue;
+      
+      const teamA = bracket[r][m][0];
+      const teamB = bracket[r][m][1];
+      if (!teamA || !teamB) continue;
+      
+      hasAnyResults = true;
+      
+      const tA = TEAMS[teamA];
+      const tB = TEAMS[teamB];
+      if (!tA || !tB) continue;
+      
+      const isWinnerA = (winner === teamA);
+      const isWinnerB = (winner === teamB);
+      
+      let scoreText = "VS";
+      let shootoutText = "";
+      
+      const realMatch = (REAL_WINNERS[r] && REAL_WINNERS[r][m]);
+      if (realMatch && typeof realMatch === 'object') {
+        const hRaw = realMatch.homeScoreRaw || String(realMatch.homeScore);
+        const aRaw = realMatch.awayScoreRaw || String(realMatch.awayScore);
+        
+        if (realMatch.home === teamA) {
+          scoreText = `${hRaw} - ${aRaw}`;
+        } else {
+          scoreText = `${aRaw} - ${hRaw}`;
+        }
+        
+        if (hRaw.includes('(') || aRaw.includes('(') || realMatch.homeScore === realMatch.awayScore) {
+          shootoutText = "decided by shootout";
+        }
+      } else {
+        scoreText = isWinnerA ? "1 - 0" : "0 - 1";
+      }
+      
+      roundHtml += `
+        <div class="result-card">
+          <div class="result-team">
+            <img class="result-flag-img" src="https://hatscripts.github.io/circle-flags/flags/${tA.code}.svg">
+            <span class="result-name ${isWinnerA ? 'winner' : 'loser'}">${teamA}</span>
+          </div>
+          <div class="result-score-box">
+            <span class="result-score">${scoreText}</span>
+            ${shootoutText ? `<span class="result-shootout">${shootoutText}</span>` : ''}
+          </div>
+          <div class="result-team away">
+            <img class="result-flag-img" src="https://hatscripts.github.io/circle-flags/flags/${tB.code}.svg">
+            <span class="result-name ${isWinnerB ? 'winner' : 'loser'}">${teamB}</span>
+          </div>
+        </div>
+      `;
+    }
+    
+    if (roundHtml) {
+      roundHtml = `
+        <div class="results-round-group">
+          <div class="results-round-title">${roundLabels[r]}</div>
+          <div class="results-grid">
+            ${roundHtml}
+          </div>
+        </div>
+      `;
+      html += roundHtml;
+    }
+  }
+  
+  if (!hasAnyResults) {
+    html = `<div class="no-results-placeholder">No matches have finished yet. Click teams on the bracket wheel to advance them!</div>`;
+  }
+  
+  container.innerHTML = html;
+}
+
 /* ===== TAB NAVIGATION SYSTEM ===== */
 function switchTab(tabId) {
   const tabs = {
     bracket: { btn: 'tabBracket', view: 'bracket-view' },
     leaderboard: { btn: 'tabLeaderboard', view: 'leaderboard-view' },
     montecarlo: { btn: 'tabMonteCarlo', view: 'montecarlo-view' },
-    victory: { btn: 'tabVictory', view: 'victory-view' }
+    victory: { btn: 'tabVictory', view: 'victory-view' },
+    results: { btn: 'tabResults', view: 'results-view' }
   };
   
   for (const [key, t] of Object.entries(tabs)) {
@@ -2562,6 +2800,8 @@ function switchTab(tabId) {
       if (selectedVictoryTeam) {
         calculateVictoryPath(selectedVictoryTeam);
       }
+    } else if (tabId === 'results') {
+      renderMatchResults();
     }
   }
 }
@@ -2570,6 +2810,7 @@ document.getElementById('tabBracket').addEventListener('click', () => switchTab(
 document.getElementById('tabLeaderboard').addEventListener('click', () => switchTab('leaderboard'));
 document.getElementById('tabMonteCarlo').addEventListener('click', () => switchTab('montecarlo'));
 document.getElementById('tabVictory').addEventListener('click', () => switchTab('victory'));
+document.getElementById('tabResults').addEventListener('click', () => switchTab('results'));
 
 /* ===== INITIALIZATION ===== */
 fetch('results.json?t=' + Date.now())

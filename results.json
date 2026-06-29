@@ -1,6 +1,22 @@
 {
   "0": {
-    "15": "Canada",
-    "2": "Brazil"
+    "15": {
+      "winner": "Canada",
+      "home": "South Africa",
+      "away": "Canada",
+      "homeScore": 0,
+      "awayScore": 1,
+      "homeScoreRaw": "0",
+      "awayScoreRaw": "1"
+    },
+    "2": {
+      "winner": "Brazil",
+      "home": "Brazil",
+      "away": "Japan",
+      "homeScore": 2,
+      "awayScore": 1,
+      "homeScoreRaw": "2",
+      "awayScoreRaw": "1"
+    }
   }
 }
