@@ -1697,8 +1697,8 @@ function runMonteCarlo(n=5000){
     const t=TEAMS[row.team];
     return`<tr><td class="rank">${i+1}</td><td class="team"><img src="https://hatscripts.github.io/circle-flags/flags/${t.code}.svg" style="width:16px;height:16px;border-radius:50%;margin-right:6px;vertical-align:middle;"> ${row.team}</td><td class="rank">#${t.rank}</td><td class="rank">${t.titles}</td><td class="pct">${row.pct.toFixed(1)}%</td><td><div class="bar"><i style="width:${Math.min(row.pct*3.5,100)}%"></i></div></td></tr>`;
   }).join('');
-  document.getElementById('probsSection').style.display='block';
-  document.getElementById('probsSection').scrollIntoView({behavior:'smooth',block:'start'});
+  document.getElementById('montecarlo-view').style.display='block';
+  document.getElementById('montecarlo-view').scrollIntoView({behavior:'smooth',block:'start'});
 }
 document.getElementById('runMonte').addEventListener('click',()=>runMonteCarlo(5000));
 
