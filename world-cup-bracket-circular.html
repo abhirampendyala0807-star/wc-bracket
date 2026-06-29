@@ -30,8 +30,7 @@
   button.primary:hover{filter:brightness(1.1);color:#100d04;}
   .infobar{text-align:center;font-size:11.5px;color:#7a6e5e;min-height:18px;font-family:'JetBrains Mono',monospace;padding:6px 20px;letter-spacing:.04em;}
   .infobar b{color:#f0c14b;}
-  
-  /* SVG & Lines Layer styles */
+
   .conn-line{stroke:#262114;stroke-width:1.8;fill:none;stroke-linecap:round;transition: all 0.3s ease;}
   .conn-line.active{stroke:#4a3e1e;}
   .conn-line.won{stroke:#cda434;stroke-width:2.2;}
@@ -44,7 +43,7 @@
   .conn-line.dimmed {
     opacity: 0.12 !important;
   }
-  
+
   .bracket-dot{fill:#181410;stroke:#2e2a1a;stroke-width:1.4;transition: all 0.3s ease;}
   .bracket-dot.won{fill:#2a2008;stroke:#cda434;}
   .bracket-dot.highlighted {
@@ -78,7 +77,6 @@
   td.team{font-weight:600;}
   td.pct{font-family:'JetBrains Mono',monospace;color:#f0c14b;}
 
-  /* Layout & Responsive Details Overlay */
   #canvas-wrap {
     position: relative;
     display: flex;
@@ -93,7 +91,6 @@
     height: min(96vw, 960px);
   }
 
-  /* Profile Card Overlay styling */
   .profile-card {
     position: fixed;
     top: 0;
@@ -129,8 +126,7 @@
     letter-spacing: 0.05em;
     text-transform: uppercase;
   }
-  
-  /* Profile Content styling */
+
   .profile-header {
     display: flex;
     flex-direction: column;
@@ -212,7 +208,6 @@
     color: #cda434;
   }
 
-  /* Matchup comparison card */
   .matchup-header {
     display: flex;
     justify-content: space-around;
@@ -296,7 +291,6 @@
     }
   }
 
-  /* Modal styling */
   .modal {
     display: none;
     position: fixed;
@@ -412,7 +406,7 @@
     text-shadow: 0 0 15px rgba(240,193,75,0.3);
     text-align: center;
   }
-  
+
   .modal-sim-controls {
     display: flex;
     gap: 12px;
@@ -445,7 +439,7 @@
   .modal-btn.primary-btn:hover {
     filter: brightness(1.1);
   }
-  
+
   .modal-simulation-log {
     background: rgba(10, 8, 6, 0.6);
     border: 1px solid rgba(205,164,52,0.1);
@@ -483,7 +477,7 @@
     color: #f0c14b;
     font-weight: bold;
   }
-  
+
   .modal-post-match {
     text-align: center;
     padding-top: 10px;
@@ -555,7 +549,6 @@
     width: 100%;
   }
 
-  /* Leaderboard Styling */
   .leaderboard-section {
     max-width: 960px;
     margin: 40px auto 20px;
@@ -622,7 +615,7 @@
     border: none;
     padding: 7px 13px;
   }
-  
+
   .leaderboard-table {
     width: 100%;
     border-collapse: collapse;
@@ -734,7 +727,6 @@
     box-shadow: 0 0 8px rgba(205, 164, 52, 0.6);
   }
 
-  /* Victory Path Planner styles */
   .victory-section {
     max-width: 800px;
     margin: 0 auto;
@@ -773,7 +765,7 @@
     height: 20px;
     border-radius: 50%;
   }
-  
+
   .victory-header-card {
     background: linear-gradient(135deg, rgba(28, 24, 18, 0.95), rgba(15, 13, 10, 0.98));
     border: 1px solid rgba(205, 164, 52, 0.3);
@@ -811,7 +803,7 @@
     font-size: 13px;
     color: #7a6e5e;
   }
-  
+
   .victory-chances {
     display: flex;
     gap: 10px;
@@ -845,7 +837,7 @@
     color: #f0c14b;
     text-shadow: 0 0 8px rgba(205, 164, 52, 0.4);
   }
-  
+
   .victory-timeline {
     position: relative;
     padding-left: 20px;
@@ -952,98 +944,6 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-top: 1px;
-  /* Match Results styles */
-  .results-section {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 10px;
-  }
-  .results-round-group {
-    margin-bottom: 25px;
-  }
-  .results-round-title {
-    font-family: 'Cinzel', serif;
-    font-size: 1.15rem;
-    color: #cda434;
-    border-bottom: 1.5px solid rgba(205, 164, 52, 0.2);
-    padding-bottom: 6px;
-    margin-bottom: 15px;
-    letter-spacing: 0.05em;
-  }
-  .results-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    gap: 12px;
-  }
-  .result-card {
-    background: rgba(22, 19, 14, 0.55);
-    border: 1px solid rgba(205, 164, 52, 0.12);
-    border-radius: 8px;
-    padding: 10px 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .result-team {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 40%;
-  }
-  .result-team.away {
-    flex-direction: row-reverse;
-    text-align: right;
-  }
-  .result-map-icon {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
-  }
-  .result-name {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.95rem;
-    color: #b8a888;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .result-name.winner {
-    color: #cda434;
-    font-weight: 600;
-  }
-  .result-name.loser {
-    color: #706555;
-  }
-  .result-score-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 20%;
-  }
-  .result-score {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 2px;
-  }
-  .result-shootout {
-    font-size: 0.68rem;
-    color: #8c7e6c;
-    margin-top: 1px;
-    white-space: nowrap;
-  }
-  .no-results-placeholder {
-    font-family: 'Cinzel', serif;
-    font-size: 0.95rem;
-    color: #7a6e5e;
-    text-align: center;
-    padding: 30px;
-    background: rgba(22, 19, 14, 0.25);
-    border: 1px dashed rgba(205, 164, 52, 0.1);
-    border-radius: 8px;
   }
 </style>
 </head>
@@ -1057,7 +957,6 @@
   <button class="tab-btn" id="tabLeaderboard">Team Explorer & Elo</button>
   <button class="tab-btn" id="tabMonteCarlo">Monte Carlo Odds</button>
   <button class="tab-btn" id="tabVictory">Path to Victory</button>
-  <button class="tab-btn" id="tabResults">Match Results</button>
 </div>
 
 <div id="bracket-view">
@@ -1102,11 +1001,9 @@
       </filter>
     </defs>
 
-    <!-- Background atmosphere -->
     <circle cx="0" cy="0" r="480" fill="url(#bgGlow)"/>
     <circle cx="0" cy="0" r="180" fill="url(#centerGlow)"/>
 
-    <!-- Guide rings (very subtle) -->
     <circle cx="0" cy="0" r="390" fill="none" stroke="#1c1810" stroke-width="1"/>
     <circle cx="0" cy="0" r="300" fill="none" stroke="#1c1810" stroke-width="1"/>
     <circle cx="0" cy="0" r="220" fill="none" stroke="#1c1810" stroke-width="1"/>
@@ -1117,7 +1014,6 @@
     <g id="nodes-layer"></g>
     <g id="teams-layer"></g>
 
-    <!-- Center trophy -->
     <g id="center-g">
       <circle cx="0" cy="0" r="60" fill="#0c0a06" stroke="#3a3010" stroke-width="1.5"/>
       <circle cx="0" cy="0" r="52" fill="none" stroke="#4a3e14" stroke-width="1" opacity="0.6"/>
@@ -1132,7 +1028,6 @@
   </div>
 </div>
 
-<!-- Match Simulation Modal -->
 <div id="match-modal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
@@ -1156,7 +1051,7 @@
           <p id="modalEloB">Elo: 1800</p>
         </div>
       </div>
-      
+
       <div id="modal-sim-controls" class="modal-sim-controls">
         <button class="modal-btn primary-btn" id="btnPlayMatch">Play Match</button>
         <button class="modal-btn" id="btnQuickSim">Quick Advance</button>
@@ -1165,7 +1060,7 @@
       <div class="modal-simulation-log" id="modalSimLog">
         <div class="sim-placeholder">Click "Play Match" to start live text simulation.</div>
       </div>
-      
+
       <div id="modal-post-match" class="modal-post-match" style="display: none;">
         <h4 id="modalWinnerDecl">Team A wins!</h4>
         <button class="modal-btn primary-btn" id="btnAdvanceWinner">Advance Winner →</button>
@@ -1174,7 +1069,6 @@
   </div>
 </div>
 
-<!-- Team Swap Modal -->
 <div id="swap-modal" class="modal">
   <div class="modal-content" style="max-width: 500px;">
     <div class="modal-header">
@@ -1186,13 +1080,12 @@
         Select a team to swap positions with <b id="swapTargetName" style="color:#ece4d3;">Team</b>:
       </p>
       <div class="swap-grid" id="swapGrid">
-        <!-- populated dynamically -->
+
       </div>
     </div>
   </div>
 </div>
 
-<!-- Leaderboard Section -->
 <div class="leaderboard-section" id="leaderboard-view" style="display: none;">
   <h2>Team Explorer & Elo Leaderboard</h2>
   <div class="leaderboard-controls">
@@ -1215,7 +1108,7 @@
       </tr>
     </thead>
     <tbody id="leaderboardBody">
-      <!-- dynamic rows -->
+
     </tbody>
   </table>
 </div>
@@ -1229,26 +1122,16 @@
   </table>
 </div>
 
-<!-- Victory Planner Section -->
 <div class="victory-section" id="victory-view" style="display: none;">
   <h2>Victory Path Planner</h2>
   <div class="sub2">Select a team to analyze their road to the World Cup trophy and all potential opponents along the way.</div>
-  
-  <div class="victory-selector" id="victorySelector">
-    <!-- Grid of all 32 teams to click and select -->
-  </div>
-  
-  <div id="victoryDetails" style="display: none;">
-    <!-- Details about the selected team's path -->
-  </div>
-</div>
 
-<!-- Match Results Section -->
-<div class="results-section" id="results-view" style="display: none;">
-  <h2>Match Center & Results</h2>
-  <div class="sub2">Completed games and official scores from the 2026 World Cup</div>
-  <div id="resultsLogContainer" style="margin-top: 20px;">
-    <!-- dynamic cards -->
+  <div class="victory-selector" id="victorySelector">
+
+  </div>
+
+  <div id="victoryDetails" style="display: none;">
+
   </div>
 </div>
 
@@ -1288,46 +1171,35 @@ const TEAMS = {
   "Ghana":          {code:"gh", rank:73, titles:0, elo:1510, stars:["Mohammed Kudus", "Thomas Partey", "Inaki Williams"]},
 };
 
-// R32 pairings. The two teams of each match sit adjacently on the wheel.
-// Order here = clockwise order of match slots around the circle.
 const ORIGINAL_R32 = [
-  ["Sweden","France"],       // 0
-  ["Paraguay","Germany"],    // 1
-  ["Brazil","Japan"],        // 2
-  ["Côte d'Ivoire","Norway"],// 3
-  ["Mexico","Ecuador"],      // 4
-  ["England","DR Congo"],    // 5
-  ["Argentina","Cape Verde"],// 6
-  ["Australia","Egypt"],     // 7
-  ["Switzerland","Algeria"], // 8
-  ["Colombia","Ghana"],      // 9
-  ["Senegal","Belgium"],     // 10
-  ["Bosnia & Herz.","USA"],  // 11
-  ["Austria","Spain"],       // 12
-  ["Croatia","Portugal"],    // 13
-  ["Morocco","Netherlands"], // 14
-  ["South Africa","Canada"], // 15
+  ["Sweden","France"],
+  ["Paraguay","Germany"],
+  ["Brazil","Japan"],
+  ["Côte d'Ivoire","Norway"],
+  ["Mexico","Ecuador"],
+  ["England","DR Congo"],
+  ["Argentina","Cape Verde"],
+  ["Australia","Egypt"],
+  ["Switzerland","Algeria"],
+  ["Colombia","Ghana"],
+  ["Senegal","Belgium"],
+  ["Bosnia & Herz.","USA"],
+  ["Austria","Spain"],
+  ["Croatia","Portugal"],
+  ["Morocco","Netherlands"],
+  ["South Africa","Canada"],
 ];
 let R32 = ORIGINAL_R32.map(p => p.slice());
-// Lock in real-world tournament winners as matches are played!
-// Format: { [round]: { [match_index]: "Winning Team Name" } }
-// Round 0 = R32 (matches 0-15)
-// Round 1 = R16 (matches 0-7)
-// Round 2 = QF (matches 0-3)
-// Round 3 = SF (matches 0-1)
-// Round 4 = Finals (match 0)
+
 const REAL_WINNERS = {
   0: {
-    15: "Canada" // Pre-filled winner of R32 Match 15 (South Africa vs Canada)
+    15: "Canada"
   }
 };
 
-/* ===== LAYOUT CONSTANTS ===== */
-// Radii: R32 teams, R16 nodes, QF nodes, SF nodes, F nodes
 const RADII = [415, 320, 235, 160, 95];
-const TEAM_R  = [28, 24, 21, 19, 17]; // circle radii for each round's nodes
+const TEAM_R  = [28, 24, 21, 19, 17];
 
-/* ===== STATE ===== */
 let bracket = [], winners = [];
 let highlightedTeam = null;
 let activeSimMatch = { round: null, match: null, teamA: null, teamB: null };
@@ -1353,9 +1225,9 @@ function freshBracket() {
   bracket = [R32.map(p => p.slice())];
   for (let r = 1; r < 5; r++) bracket.push(new Array(bracket[r-1].length/2).fill(null).map(()=>[null,null]));
   winners = bracket.map(r => new Array(r.length).fill(null));
-  
+
   applyRealWinners();
-  
+
   lastCrownedChamp = null;
 }
 freshBracket();
@@ -1378,24 +1250,21 @@ function propagate() {
   }
 }
 
-/* ===== GEOMETRY ===== */
-// 32 team slots arranged clockwise around the circle.
-// Match m has team[0] at slot m*2 and team[1] at slot m*2+1.
 function slotAngle(slot, total=32) {
-  // Start from top (-π/2), go clockwise
+
   return (slot/total) * 2*Math.PI - Math.PI/2;
 }
 function matchAngle(matchIdx, roundIdx) {
-  // For R32 (round 0): average of its two team slot angles
+
   if (roundIdx === 0) {
     const a0 = slotAngle(matchIdx*2);
     const a1 = slotAngle(matchIdx*2+1);
     return (a0+a1)/2;
   }
-  // For inner rounds: average of feeder match angles
+
   const fa0 = matchAngle(matchIdx*2, roundIdx-1);
   const fa1 = matchAngle(matchIdx*2+1, roundIdx-1);
-  // Handle wrap
+
   let d = fa1-fa0;
   if (d > Math.PI) d -= 2*Math.PI;
   if (d < -Math.PI) d += 2*Math.PI;
@@ -1418,7 +1287,6 @@ function getSlotPos(r, s) {
   return polar(RADII[r], a);
 }
 
-/* ===== SVG HELPERS ===== */
 const NS = 'http://www.w3.org/2000/svg';
 function el(tag,attrs={},text='') {
   const e = document.createElementNS(NS,tag);
@@ -1434,7 +1302,6 @@ function el(tag,attrs={},text='') {
   return e;
 }
 
-/* ===== RENDERING ===== */
 const linesL = document.getElementById('lines-layer');
 const nodesL = document.getElementById('nodes-layer');
 const teamsL = document.getElementById('teams-layer');
@@ -1456,7 +1323,6 @@ function render() {
   nodesL.innerHTML = '';
   teamsL.innerHTML = '';
 
-  // 1. Highlighted Team slot index search
   let highlightedSlot = -1;
   if (highlightedTeam) {
     for (let s = 0; s < 32; s++) {
@@ -1467,14 +1333,11 @@ function render() {
     }
   }
 
-  // Helper to check if a slot in round r is on the path of the highlighted team
   function isPathSlot(r, s) {
     if (highlightedSlot === -1) return false;
     return s === Math.floor(highlightedSlot / Math.pow(2, r));
   }
 
-  // 2. Draw Connection Lines
-  // A. Lines between rounds (r = 1 to 4)
   for (let r = 1; r < 5; r++) {
     const totalSlots = 32 / Math.pow(2, r);
     for (let s = 0; s < totalSlots; s++) {
@@ -1500,7 +1363,6 @@ function render() {
     }
   }
 
-  // B. Lines from Finalists to Center Champion Circle
   const [cx, cy] = [0, 0];
   const [fx0, fy0] = getSlotPos(4, 0);
   const [fx1, fy1] = getSlotPos(4, 1);
@@ -1520,7 +1382,6 @@ function render() {
   const cls1 = 'conn-line' + (line1Path ? ' highlighted' : highlightedTeam ? ' dimmed' : line1Won ? ' won' : line1Active ? ' active' : '');
   linesL.appendChild(el('line', { x1: fx1, y1: fy1, x2: cx, y2: cy, class: cls1 }));
 
-  // 3. Draw Nodes (R32, R16, QF, SF, F)
   for (let r = 0; r < 5; r++) {
     const totalSlots = 32 / Math.pow(2, r);
     const nr = TEAM_R[r];
@@ -1528,7 +1389,7 @@ function render() {
       const [x, y] = getSlotPos(r, s);
       const m = Math.floor(s / 2);
       const isEven = (s % 2 === 0);
-      
+
       const teamName = bracket[r][m][s % 2];
       const isPreLocked = (r === 0 && m === 15);
       const t = teamName ? TEAMS[teamName] : null;
@@ -1536,7 +1397,7 @@ function render() {
       const teamA = bracket[r][m][0];
       const teamB = bracket[r][m][1];
       const bothPresent = teamA && teamB;
-      
+
       const hasW = (r < 4) ? !!winners[r][m] : !!winners[4][0];
       const isWinner = teamName && ((r < 4) ? (winners[r][m] === teamName) : (winners[4][0] === teamName));
       const isLoser = teamName && hasW && !isWinner;
@@ -1556,7 +1417,7 @@ function render() {
       }
 
       const g = el('g', { cursor: gCursor, opacity: gOpacity });
-      
+
       if (teamName && t) {
         g.addEventListener('mouseenter', () => {
           showTeamProfile(teamName);
@@ -1565,7 +1426,6 @@ function render() {
           resetProfileCard();
         });
 
-        // Click interaction
         g.addEventListener('click', () => {
           if (isEditMode && r === 0) {
             openSwapGrid(teamName);
@@ -1576,18 +1436,14 @@ function render() {
           }
         });
 
-        // Winner glow background
         if (isWinner) {
           g.appendChild(el('circle', { cx: x, cy: y, r: nr + 4, fill: 'none', stroke: '#cda434', 'stroke-width': '1.2', opacity: '0.35', filter: 'url(#softglow)' }));
         }
 
-        // Base background
         g.appendChild(el('circle', { cx: x, cy: y, r: nr, fill: isWinner ? '#1c1808' : '#0e0c08' }));
 
-        // Title tooltip (fallback)
         g.appendChild(el('title', {}, teamName));
 
-        // Circular Flag filling the circle completely
         const fo = el('foreignObject', {
           x: x - nr,
           y: y - nr,
@@ -1604,7 +1460,6 @@ function render() {
         fo.appendChild(img);
         g.appendChild(fo);
 
-        // Border stroke on top
         let strokeClass = '';
         if (highlightedTeam && highlightedTeam === teamName) {
           strokeClass = 'highlighted-flag-border';
@@ -1622,7 +1477,7 @@ function render() {
         }));
 
       } else {
-        // TBD Node placeholder
+
         g.appendChild(el('circle', { cx: x, cy: y, r: nr, fill: '#0c0a06', stroke: '#1c1810', 'stroke-width': '1', opacity: '0.9' }));
         g.appendChild(el('text', {
           x: x,
@@ -1641,7 +1496,6 @@ function render() {
     }
   }
 
-  // Update Champion Trophy Section
   const champ = winners[4][0];
   const flagContainer = document.getElementById('champ-flag-container');
   if (flagContainer) flagContainer.innerHTML = '';
@@ -1674,14 +1528,12 @@ function render() {
     lastCrownedChamp = null;
   }
 
-  // Bring center to front
   const cg=document.getElementById('center-g');
   cg.parentNode.appendChild(cg);
 
   saveBracket();
 }
 
-/* ===== SIMULATION ===== */
 function simulateRound(){
   propagate();
   const counts=[16,8,4,2,1];
@@ -1718,7 +1570,6 @@ document.getElementById('reset').addEventListener('click',()=>{
   render();
 });
 
-
 function runMonteCarlo(n=5000){
   const tw={}; Object.keys(TEAMS).forEach(t=>tw[t]=0);
   const counts=[16,8,4,2,1];
@@ -1747,7 +1598,6 @@ function runMonteCarlo(n=5000){
 }
 document.getElementById('runMonte').addEventListener('click',()=>runMonteCarlo(5000));
 
-/* ===== STATE PERSISTENCE & SERIALIZATION ===== */
 const TEAM_KEYS = Object.keys(TEAMS);
 
 function serializeBracket() {
@@ -1843,7 +1693,7 @@ function loadSavedBracket() {
       return;
     }
   }
-  
+
   const saved = localStorage.getItem("wc_circular_bracket");
   if (saved) {
     deserializeBracket(saved);
@@ -1855,7 +1705,7 @@ function loadSavedBracket() {
 document.getElementById('shareBracket').addEventListener('click', () => {
   const code = serializeBracket();
   const shareUrl = `${window.location.origin}${window.location.pathname}#b=${code}`;
-  
+
   navigator.clipboard.writeText(shareUrl).then(() => {
     infobar.innerHTML = `<b>Link copied to clipboard!</b> Share it with others to show your predictions.`;
   }).catch(() => {
@@ -1863,31 +1713,30 @@ document.getElementById('shareBracket').addEventListener('click', () => {
   });
 });
 
-/* ===== INTERACTIVE MATCH SIMULATOR ===== */
 function openSimulationModal(teamA, teamB, r, m) {
   activeSimMatch = { round: r, match: m, teamA, teamB };
   activeSim = null;
   if (simInterval) clearInterval(simInterval);
-  
+
   document.getElementById('modal-match-title').textContent = `${r === 0 ? "Round of 32" : r === 1 ? "Round of 16" : r === 2 ? "Quarterfinals" : r === 3 ? "Semifinals" : "World Cup Final"}`;
-  
+
   document.getElementById('modalFlagA').src = `https://hatscripts.github.io/circle-flags/flags/${TEAMS[teamA].code}.svg`;
   document.getElementById('modalNameA').textContent = sn(teamA);
   document.getElementById('modalEloA').textContent = `Elo: ${TEAMS[teamA].elo}`;
-  
+
   document.getElementById('modalFlagB').src = `https://hatscripts.github.io/circle-flags/flags/${TEAMS[teamB].code}.svg`;
   document.getElementById('modalNameB').textContent = sn(teamB);
   document.getElementById('modalEloB').textContent = `Elo: ${TEAMS[teamB].elo}`;
-  
+
   document.getElementById('modalScore').textContent = '0 - 0';
   document.getElementById('modalSimLog').innerHTML = `<div class="sim-placeholder">Click "Play Match" to start live text simulation.</div>`;
-  
+
   document.getElementById('modal-sim-controls').style.display = 'flex';
   document.getElementById('modal-post-match').style.display = 'none';
-  
+
   document.getElementById('btnPlayMatch').disabled = false;
   document.getElementById('btnQuickSim').disabled = false;
-  
+
   document.getElementById('match-modal').classList.add('open');
 }
 
@@ -1902,28 +1751,28 @@ function generateMatchEvents(teamA, teamB) {
   const tA = TEAMS[teamA];
   const tB = TEAMS[teamB];
   const probA = winProb(teamA, teamB);
-  
+
   let scoreA = 0;
   let scoreB = 0;
   let events = [];
-  
+
   function addEvent(min, type, desc, detail = {}) {
     events.push({ minute: min, type, desc, score: `${scoreA}-${scoreB}`, ...detail });
   }
-  
+
   addEvent(0, 'start', `Kickoff whistle blows! ${teamA} vs ${teamB} is underway.`);
-  
+
   for (let m = 1; m <= 90; m++) {
     if (m === 46) {
       addEvent(45, 'half', `Second half gets underway after halftime breaks.`);
     }
-    
+
     if (Math.random() < 0.05) {
       const eventRand = Math.random();
       const isTeamA = Math.random() < probA;
       const activeTeam = isTeamA ? teamA : teamB;
       const activeStars = isTeamA ? tA.stars : tB.stars;
-      
+
       if (eventRand < 0.4) {
         const card = Math.random() < 0.25 ? "Yellow Card 🟨" : "Foul whistle";
         const player = activeStars[Math.floor(Math.random() * activeStars.length)];
@@ -1939,22 +1788,22 @@ function generateMatchEvents(teamA, teamB) {
       }
     }
   }
-  
+
   addEvent(90, 'full', `Full time! Scoreboard reads: ${teamA} ${scoreA} - ${scoreB} ${teamB}`);
-  
+
   if (scoreA === scoreB) {
     addEvent(90, 'extra_start', `Tied at full time! Moving into 30 minutes of Extra Time.`);
-    
+
     for (let m = 91; m <= 120; m++) {
       if (m === 106) {
         addEvent(105, 'extra_half', `Second half of Extra Time kicks off.`);
       }
-      
+
       if (Math.random() < 0.04) {
         const isTeamA = Math.random() < probA;
         const activeTeam = isTeamA ? teamA : teamB;
         const activeStars = isTeamA ? tA.stars : tB.stars;
-        
+
         if (Math.random() < 0.25) {
           const player = activeStars[Math.floor(Math.random() * activeStars.length)];
           if (isTeamA) scoreA++; else scoreB++;
@@ -1962,35 +1811,35 @@ function generateMatchEvents(teamA, teamB) {
         }
       }
     }
-    
+
     addEvent(120, 'extra_end', `Extra Time ends. Scoreboard: ${teamA} ${scoreA} - ${scoreB} ${teamB}`);
-    
+
     if (scoreA === scoreB) {
       addEvent(120, 'pen_start', `Still locked! We go into a dramatic Penalty Shootout.`);
-      
+
       let penA = 0, penB = 0;
       let penListA = [], penListB = [];
       let penRound = 0;
-      
+
       while (penRound < 5 || (penA === penB && penRound >= 5)) {
         penRound++;
         const hitA = Math.random() < 0.78;
         if (hitA) { penA++; penListA.push("O"); } else { penListA.push("X"); }
-        
+
         const hitB = Math.random() < 0.78;
         if (hitB) { penB++; penListB.push("O"); } else { penListB.push("X"); }
-        
+
         addEvent(120, 'pen_round', `Pens Round ${penRound}: ${teamA} ${penListA.join(' ')} (${penA}) vs ${teamB} ${penListB.join(' ')} (${penB})`);
-        
+
         if (penRound < 5) {
           const remaining = 5 - penRound;
           if (penA > penB + remaining || penB > penA + remaining) break;
         }
       }
-      
+
       const penWinner = penA > penB ? teamA : teamB;
       addEvent(120, 'pen_end', `Shootout finishes! ${penWinner} wins ${penA}-${penB} on penalties.`, { penWinner, penScore: `${penA}-${penB}` });
-      
+
       return {
         events,
         scoreA,
@@ -2000,7 +1849,7 @@ function generateMatchEvents(teamA, teamB) {
       };
     }
   }
-  
+
   const winner = scoreA > scoreB ? teamA : teamB;
   return {
     events,
@@ -2015,9 +1864,9 @@ document.getElementById('btnQuickSim').addEventListener('click', () => {
   const { teamA, teamB } = activeSimMatch;
   const result = generateMatchEvents(teamA, teamB);
   activeSim = result;
-  
+
   document.getElementById('modalScore').textContent = result.scoreText;
-  
+
   const log = document.getElementById('modalSimLog');
   log.innerHTML = `
     <div class="sim-event"><span class="sim-event-minute">FT</span><b>Match simulated instantly using ELO probabilities.</b></div>
@@ -2029,27 +1878,27 @@ document.getElementById('btnQuickSim').addEventListener('click', () => {
 document.getElementById('btnPlayMatch').addEventListener('click', () => {
   document.getElementById('btnPlayMatch').disabled = true;
   document.getElementById('btnQuickSim').disabled = true;
-  
+
   const { teamA, teamB } = activeSimMatch;
   const result = generateMatchEvents(teamA, teamB);
   activeSim = result;
-  
+
   const log = document.getElementById('modalSimLog');
   log.innerHTML = '';
-  
+
   let eventIdx = 0;
-  
+
   simInterval = setInterval(() => {
     if (eventIdx < result.events.length) {
       const ev = result.events[eventIdx++];
       const evDiv = document.createElement('div');
       evDiv.className = 'sim-event';
-      
+
       const minSpan = document.createElement('span');
       minSpan.className = 'sim-event-minute';
       minSpan.textContent = ev.minute === 0 ? "0'" : ev.minute === 120 ? "FT" : `${ev.minute}'`;
       evDiv.appendChild(minSpan);
-      
+
       const descSpan = document.createElement('span');
       if (ev.goal) {
         descSpan.className = 'sim-event-goal';
@@ -2057,7 +1906,7 @@ document.getElementById('btnPlayMatch').addEventListener('click', () => {
       }
       descSpan.textContent = ev.desc;
       evDiv.appendChild(descSpan);
-      
+
       log.appendChild(evDiv);
       log.scrollTop = log.scrollHeight;
     } else {
@@ -2086,14 +1935,13 @@ document.getElementById('btnAdvanceWinner').addEventListener('click', () => {
   }
 });
 
-/* ===== TEAM CUSTOM PAIRINGS SWAPPING ===== */
 function openSwapGrid(targetTeam) {
   closeModal();
   window.swapTargetTeam = targetTeam;
-  
+
   const grid = document.getElementById('swapGrid');
   grid.innerHTML = '';
-  
+
   TEAM_KEYS.forEach(tName => {
     if (tName === targetTeam) return;
     const item = document.createElement('div');
@@ -2107,7 +1955,7 @@ function openSwapGrid(targetTeam) {
     });
     grid.appendChild(item);
   });
-  
+
   document.getElementById('swapTargetName').textContent = targetTeam;
   document.getElementById('swap-modal').classList.add('open');
 }
@@ -2122,26 +1970,26 @@ function executeSwap(teamA, teamB) {
   for (let i = 0; i < 16; i++) {
     if (R32[i][0] === teamA) idxA = i * 2;
     else if (R32[i][1] === teamA) idxA = i * 2 + 1;
-    
+
     if (R32[i][0] === teamB) idxB = i * 2;
     else if (R32[i][1] === teamB) idxB = i * 2 + 1;
   }
-  
+
   if (idxA !== -1 && idxB !== -1) {
     const mDiagA = Math.floor(idxA / 2);
     const slotA = idxA % 2;
     const mDiagB = Math.floor(idxB / 2);
     const slotB = idxB % 2;
-    
+
     R32[mDiagA][slotA] = teamB;
     R32[mDiagB][slotB] = teamA;
-    
+
     bracket[0][mDiagA][slotA] = teamB;
     bracket[0][mDiagB][slotB] = teamA;
-    
+
     winners[0][mDiagA] = null;
     winners[0][mDiagB] = null;
-    
+
     propagate();
     render();
     renderLeaderboard();
@@ -2149,25 +1997,24 @@ function executeSwap(teamA, teamB) {
   document.getElementById('swap-modal').classList.remove('open');
 }
 
-/* ===== ELO LEADERBOARD EXPLORER ===== */
 let currentSort = 'elo';
 
 function renderLeaderboard() {
   const query = document.getElementById('leaderboardSearch').value.toLowerCase();
   const list = Object.entries(TEAMS).map(([name, data]) => ({ name, ...data }));
-  
-  const filtered = list.filter(t => 
-    t.name.toLowerCase().includes(query) || 
+
+  const filtered = list.filter(t =>
+    t.name.toLowerCase().includes(query) ||
     t.stars.some(p => p.toLowerCase().includes(query))
   );
-  
+
   filtered.sort((a, b) => {
     if (currentSort === 'elo') return b.elo - a.elo;
     if (currentSort === 'rank') return a.rank - b.rank;
     if (currentSort === 'titles') return b.titles - a.titles;
     return 0;
   });
-  
+
   const tbody = document.getElementById('leaderboardBody');
   tbody.innerHTML = filtered.map((t, idx) => {
     const isHighlighted = (highlightedTeam === t.name);
@@ -2209,7 +2056,6 @@ function setSort(type) {
   renderLeaderboard();
 }
 
-/* ===== CONFETTI FIRE CELEBRATION ===== */
 function fireConfetti() {
   if (typeof confetti === 'function') {
     const duration = 3 * 1000;
@@ -2238,7 +2084,6 @@ function fireConfetti() {
   }
 }
 
-/* ===== FIXTURES MANAGEMENT ===== */
 document.getElementById('btnCustomMenu').addEventListener('click', () => {
   const menu = document.getElementById('customFixtureMenu');
   const btn = document.getElementById('btnCustomMenu');
@@ -2334,53 +2179,12 @@ document.getElementById('btnRestoreOriginal').addEventListener('click', () => {
   }
 });
 
-/* ===== TEAM PROFILE CARD OVERLAY ===== */
 function showTeamProfile(teamName) {
   const t = TEAMS[teamName];
   if (!t) return;
-  
+
   const card = document.getElementById('profileCard');
   if (!card) return;
-  
-  // Compile tournament history for this team
-  let historyHtml = '';
-  const roundLabels = ["R32", "R16", "QF", "SF", "Finals"];
-  for (let r = 0; r < 5; r++) {
-    const numMatches = 16 / Math.pow(2, r);
-    for (let m = 0; m < numMatches; m++) {
-      const winner = (r < 4) ? winners[r][m] : winners[4][0];
-      if (!winner) continue;
-      
-      const teamA = bracket[r][m][0];
-      const teamB = bracket[r][m][1];
-      if (teamA !== teamName && teamB !== teamName) continue;
-      
-      const opp = (teamA === teamName) ? teamB : teamA;
-      const isWinner = (winner === teamName);
-      
-      let scoreText = "";
-      const realMatch = (REAL_WINNERS[r] && REAL_WINNERS[r][m]);
-      if (realMatch && typeof realMatch === 'object') {
-        const hRaw = realMatch.homeScoreRaw || String(realMatch.homeScore);
-        const aRaw = realMatch.awayScoreRaw || String(realMatch.awayScore);
-        
-        if (realMatch.home === teamName) {
-          scoreText = `${hRaw}-${aRaw}`;
-        } else {
-          scoreText = `${aRaw}-${hRaw}`;
-        }
-      } else {
-        scoreText = isWinner ? "1-0" : "0-1";
-      }
-      
-      historyHtml += `
-        <div style="display:flex; justify-content:space-between; font-size:11px; padding:3px 0; border-bottom:1px solid rgba(255,255,255,0.03);">
-          <span style="color:#7a6e5e; font-weight:600;">${roundLabels[r]}</span>
-          <span style="color:${isWinner ? '#cda434' : '#706555'}; font-weight:${isWinner ? '600' : 'normal'};">vs ${opp} (${scoreText})</span>
-        </div>
-      `;
-    }
-  }
 
   card.classList.add('active');
   card.innerHTML = `
@@ -2403,15 +2207,9 @@ function showTeamProfile(teamName) {
       </div>
     </div>
     <div class="profile-players-lbl">Key Players</div>
-    <div style="margin-bottom: 5px;">
+    <div>
       ${t.stars.map(p => `<div class="profile-player-item">${p}</div>`).join('')}
     </div>
-    ${historyHtml ? `
-      <div class="profile-players-lbl" style="margin-top:10px;">Match History</div>
-      <div style="margin-top:5px; max-height:120px; overflow-y:auto;">
-        ${historyHtml}
-      </div>
-    ` : ''}
   `;
 }
 
@@ -2421,34 +2219,31 @@ function resetProfileCard() {
   card.classList.remove('active');
 }
 
-// Float details card at cursor
 document.addEventListener('mousemove', (e) => {
   const card = document.getElementById('profileCard');
   if (!card || !card.classList.contains('active')) return;
-  
+
   const w = card.offsetWidth || 290;
   const h = card.offsetHeight || 300;
-  
+
   let x = e.clientX + 15;
   let y = e.clientY - 40;
-  
-  // Keep card from going off screen to the right
+
   if (x + w > window.innerWidth) {
     x = e.clientX - w - 15;
   }
-  // Keep card from going off screen vertically
+
   if (y + h > window.innerHeight) {
     y = window.innerHeight - h - 15;
   }
   if (y < 15) {
     y = 15;
   }
-  
+
   card.style.left = x + 'px';
   card.style.top = y + 'px';
 });
 
-/* ===== EXACT TOURNEY PROBABILITY TREE PROPAGATION ===== */
 function getExactProbs() {
   const teamList = [];
   for (let m = 0; m < 16; m++) {
@@ -2460,7 +2255,7 @@ function getExactProbs() {
   for (let r = 0; r <= 5; r++) {
     probs.push({});
   }
-  
+
   teamList.forEach(t => {
     probs[0][t] = 1.0;
   });
@@ -2480,14 +2275,14 @@ function getExactProbs() {
     for (let m = 0; m < numMatches; m++) {
       const slotA = m * 2;
       const slotB = m * 2 + 1;
-      
+
       const feedersA = slotFeeders[r][slotA];
       const feedersB = slotFeeders[r][slotB];
-      
+
       slotFeeders[r+1][m] = [...feedersA, ...feedersB];
-      
+
       const w = winners[r][m];
-      
+
       if (w) {
         feedersA.forEach(t => {
           probs[r+1][t] = (t === w) ? probs[r][t] : 0;
@@ -2503,7 +2298,7 @@ function getExactProbs() {
           });
           probs[r+1][a] = probs[r][a] * sum;
         });
-        
+
         feedersB.forEach(b => {
           let sum = 0;
           feedersA.forEach(a => {
@@ -2514,19 +2309,18 @@ function getExactProbs() {
       }
     }
   }
-  
+
   return { probs, slotFeeders };
 }
 
-/* ===== VICTORY PATH PLANNER RENDERING ===== */
 let selectedVictoryTeam = null;
 
 function renderVictorySelector() {
   const container = document.getElementById('victorySelector');
   if (!container) return;
-  
+
   const sortedNames = Object.keys(TEAMS).sort();
-  
+
   container.innerHTML = sortedNames.map(name => {
     const t = TEAMS[name];
     const isActive = name === selectedVictoryTeam;
@@ -2549,31 +2343,31 @@ window.selectVictoryTeam = selectVictoryTeam;
 function calculateVictoryPath(teamName) {
   const details = document.getElementById('victoryDetails');
   if (!details) return;
-  
+
   details.style.display = 'block';
-  
+
   const { probs, slotFeeders } = getExactProbs();
-  
+
   const t = TEAMS[teamName];
   const p16 = probs[1][teamName] || 0;
   const pQF = probs[2][teamName] || 0;
   const pSF = probs[3][teamName] || 0;
   const pF  = probs[4][teamName] || 0;
   const pW  = probs[5][teamName] || 0;
-  
+
   let s32 = -1;
   for (let m = 0; m < 16; m++) {
     if (bracket[0][m][0] === teamName) { s32 = m * 2; break; }
     if (bracket[0][m][1] === teamName) { s32 = m * 2 + 1; break; }
   }
-  
+
   if (s32 === -1) {
     details.innerHTML = `<div class="placeholder-msg"><h3>Error</h3><p>Selected team not found in the current bracket.</p></div>`;
     return;
   }
-  
+
   const roundNames = ["Round of 32", "Round of 16", "Quarter-Finals", "Semi-Finals", "Finals"];
-  
+
   let html = `
     <div class="victory-header-card">
       <div class="victory-header-left">
@@ -2583,7 +2377,7 @@ function calculateVictoryPath(teamName) {
           <p>Elo: ${t.elo} · FIFA Rank: #${t.rank}</p>
         </div>
       </div>
-      
+
       <div class="victory-chances">
         <div class="chance-box">
           <div class="chance-box-val">${(p16 * 100).toFixed(1)}%</div>
@@ -2607,16 +2401,16 @@ function calculateVictoryPath(teamName) {
         </div>
       </div>
     </div>
-    
+
     <div class="victory-timeline">
   `;
-  
+
   let currentSlot = s32;
-  
+
   for (let r = 0; r < 5; r++) {
     const oppSlot = currentSlot ^ 1;
     const roundOpponents = slotFeeders[r][oppSlot] || [];
-    
+
     const oppDetails = roundOpponents.map(oppName => {
       const oppT = TEAMS[oppName];
       const meetLikelihood = probs[r][oppName] || 0;
@@ -2625,9 +2419,9 @@ function calculateVictoryPath(teamName) {
     })
     .filter(o => o.meetLikelihood > 0.001)
     .sort((a, b) => b.meetLikelihood - a.meetLikelihood);
-    
+
     const roundProgressionProb = r === 0 ? p16 : r === 1 ? pQF : r === 2 ? pSF : r === 3 ? pF : pW;
-    
+
     html += `
       <div class="timeline-round">
         <div class="timeline-round-title">
@@ -2636,7 +2430,7 @@ function calculateVictoryPath(teamName) {
         </div>
         <div class="timeline-opponents-grid">
     `;
-    
+
     if (oppDetails.length === 0) {
       html += `
         <div class="opp-row">
@@ -2669,142 +2463,45 @@ function calculateVictoryPath(teamName) {
         `;
       });
     }
-    
+
     html += `
         </div>
       </div>
     `;
-    
+
     currentSlot = Math.floor(currentSlot / 2);
   }
-  
+
   html += `
     </div>
   `;
-  
+
   details.innerHTML = html;
 }
 
-function renderMatchResults() {
-  const container = document.getElementById('resultsLogContainer');
-  if (!container) return;
-  
-  const roundLabels = ["Round of 32", "Round of 16", "Quarter-finals", "Semi-finals", "Finals"];
-  let html = '';
-  let hasAnyResults = false;
-  
-  for (let r = 0; r < 5; r++) {
-    const numMatches = 16 / Math.pow(2, r);
-    let roundHtml = '';
-    
-    for (let m = 0; m < numMatches; m++) {
-      const winner = (r < 4) ? winners[r][m] : winners[4][0];
-      if (!winner) continue;
-      
-      const teamA = bracket[r][m][0];
-      const teamB = bracket[r][m][1];
-      if (!teamA || !teamB) continue;
-      
-      hasAnyResults = true;
-      
-      const tA = TEAMS[teamA];
-      const tB = TEAMS[teamB];
-      if (!tA || !tB) continue;
-      
-      const isWinnerA = (winner === teamA);
-      const isWinnerB = (winner === teamB);
-      
-      let scoreText = "VS";
-      let shootoutText = "";
-      
-      const realMatch = (REAL_WINNERS[r] && REAL_WINNERS[r][m]);
-      if (realMatch && typeof realMatch === 'object') {
-        const hRaw = realMatch.homeScoreRaw || String(realMatch.homeScore);
-        const aRaw = realMatch.awayScoreRaw || String(realMatch.awayScore);
-        
-        if (realMatch.home === teamA) {
-          scoreText = `${hRaw} - ${aRaw}`;
-        } else {
-          scoreText = `${aRaw} - ${hRaw}`;
-        }
-        
-        if (hRaw.includes('(') || aRaw.includes('(') || realMatch.homeScore === realMatch.awayScore) {
-          shootoutText = "decided by shootout";
-        }
-      } else {
-        scoreText = isWinnerA ? "1 - 0" : "0 - 1";
-      }
-      
-      const getMapUrl = (code) => {
-        const mapped = (code === 'gb-eng') ? 'gb' : code;
-        return `https://raw.githubusercontent.com/djaiss/mapsicon/master/all/${mapped}/64.png`;
-      };
-
-      roundHtml += `
-        <div class="result-card">
-          <div class="result-team">
-            <img class="result-map-icon" src="${getMapUrl(tA.code)}">
-            <span class="result-name ${isWinnerA ? 'winner' : 'loser'}">${teamA}</span>
-          </div>
-          <div class="result-score-box">
-            <span class="result-score">${scoreText}</span>
-            ${shootoutText ? `<span class="result-shootout">${shootoutText}</span>` : ''}
-          </div>
-          <div class="result-team away">
-            <img class="result-map-icon" src="${getMapUrl(tB.code)}">
-            <span class="result-name ${isWinnerB ? 'winner' : 'loser'}">${teamB}</span>
-          </div>
-        </div>
-      `;
-    }
-    
-    if (roundHtml) {
-      roundHtml = `
-        <div class="results-round-group">
-          <div class="results-round-title">${roundLabels[r]}</div>
-          <div class="results-grid">
-            ${roundHtml}
-          </div>
-        </div>
-      `;
-      html += roundHtml;
-    }
-  }
-  
-  if (!hasAnyResults) {
-    html = `<div class="no-results-placeholder">No matches have finished yet. Click teams on the bracket wheel to advance them!</div>`;
-  }
-  
-  container.innerHTML = html;
-}
-
-/* ===== TAB NAVIGATION SYSTEM ===== */
 function switchTab(tabId) {
   const tabs = {
     bracket: { btn: 'tabBracket', view: 'bracket-view' },
     leaderboard: { btn: 'tabLeaderboard', view: 'leaderboard-view' },
     montecarlo: { btn: 'tabMonteCarlo', view: 'montecarlo-view' },
-    victory: { btn: 'tabVictory', view: 'victory-view' },
-    results: { btn: 'tabResults', view: 'results-view' }
+    victory: { btn: 'tabVictory', view: 'victory-view' }
   };
-  
+
   for (const [key, t] of Object.entries(tabs)) {
     document.getElementById(t.view).style.display = 'none';
     document.getElementById(t.btn).classList.remove('active');
   }
-  
+
   const target = tabs[tabId];
   if (target) {
     document.getElementById(target.view).style.display = 'block';
     document.getElementById(target.btn).classList.add('active');
-    
+
     if (tabId === 'victory') {
       renderVictorySelector();
       if (selectedVictoryTeam) {
         calculateVictoryPath(selectedVictoryTeam);
       }
-    } else if (tabId === 'results') {
-      renderMatchResults();
     }
   }
 }
@@ -2813,9 +2510,7 @@ document.getElementById('tabBracket').addEventListener('click', () => switchTab(
 document.getElementById('tabLeaderboard').addEventListener('click', () => switchTab('leaderboard'));
 document.getElementById('tabMonteCarlo').addEventListener('click', () => switchTab('montecarlo'));
 document.getElementById('tabVictory').addEventListener('click', () => switchTab('victory'));
-document.getElementById('tabResults').addEventListener('click', () => switchTab('results'));
 
-/* ===== INITIALIZATION ===== */
 fetch('results.json?t=' + Date.now())
   .then(res => res.json())
   .then(liveResults => {
