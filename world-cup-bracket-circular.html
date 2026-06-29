@@ -994,12 +994,11 @@
     flex-direction: row-reverse;
     text-align: right;
   }
-  .result-flag-img {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid rgba(205, 164, 52, 0.25);
+  .result-map-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
   }
   .result-name {
     font-family: 'Oswald', sans-serif;
@@ -2736,10 +2735,15 @@ function renderMatchResults() {
         scoreText = isWinnerA ? "1 - 0" : "0 - 1";
       }
       
+      const getMapUrl = (code) => {
+        const mapped = (code === 'gb-eng') ? 'gb' : code;
+        return `https://raw.githubusercontent.com/djaiss/mapsicon/master/all/${mapped}/vector.svg`;
+      };
+
       roundHtml += `
         <div class="result-card">
           <div class="result-team">
-            <img class="result-flag-img" src="https://hatscripts.github.io/circle-flags/flags/${tA.code}.svg">
+            <img class="result-map-icon" src="${getMapUrl(tA.code)}">
             <span class="result-name ${isWinnerA ? 'winner' : 'loser'}">${teamA}</span>
           </div>
           <div class="result-score-box">
@@ -2747,7 +2751,7 @@ function renderMatchResults() {
             ${shootoutText ? `<span class="result-shootout">${shootoutText}</span>` : ''}
           </div>
           <div class="result-team away">
-            <img class="result-flag-img" src="https://hatscripts.github.io/circle-flags/flags/${tB.code}.svg">
+            <img class="result-map-icon" src="${getMapUrl(tB.code)}">
             <span class="result-name ${isWinnerB ? 'winner' : 'loser'}">${teamB}</span>
           </div>
         </div>
