@@ -4,78 +4,143 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2026 World Cup — Circular Bracket</title>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <style>
   *{box-sizing:border-box;margin:0;padding:0;}
+  
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
   html,body{
-    background:#0a0806;
+    background:#0b0a09;
     color:#ece4d3;
-    font-family:'Inter',sans-serif;
+    font-family:'Outfit',sans-serif;
     min-height:100vh;
   }
   body{
     background:
-      radial-gradient(ellipse 70% 50% at 50% 50%, rgba(160,110,20,0.12), transparent 65%),
-      #0a0806;
+      radial-gradient(circle 800px at 0% 0%, rgba(200, 177, 133, 0.05), transparent 100%),
+      #0b0a09;
+    position: relative;
   }
-  header{text-align:center;padding:28px 20px 4px;}
-  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#cda434;margin-bottom:8px;}
-  h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(22px,3.5vw,40px);color:#ece4d3;text-shadow:0 0 40px rgba(205,164,52,0.3);letter-spacing:.03em;}
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    opacity: 0.03;
+    z-index: 9999;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+  header{text-align:center;padding:32px 20px 8px;}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#c8b185;margin-bottom:8px;font-weight:500;}
+  h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(24px,3.8vw,44px);color:#ece4d3;letter-spacing:-0.02em;}
   .sub{color:#7a6e5e;font-size:12px;margin-top:6px;font-family:'JetBrains Mono',monospace;letter-spacing:.05em;}
   .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:16px 20px 4px;}
-  button{font-family:'Oswald',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;border:1px solid #2e2a22;background:#111009;color:#ece4d3;padding:9px 16px;border-radius:3px;cursor:pointer;transition:.15s ease;}
-  button:hover{border-color:#cda434;color:#f0c14b;}
-  button.primary{background:linear-gradient(180deg,#dcb24a,#b8881f);color:#100d04;border:none;}
-  button.primary:hover{filter:brightness(1.1);color:#100d04;}
-  .infobar{text-align:center;font-size:11.5px;color:#7a6e5e;min-height:18px;font-family:'JetBrains Mono',monospace;padding:6px 20px;letter-spacing:.04em;}
-  .infobar b{color:#f0c14b;}
+  button{font-family:'Outfit',sans-serif;font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.08);background:transparent;color:#cbbfa8;padding:8px 16px;border-radius:4px;cursor:pointer;transition:all 0.25s ease;}
+  button:hover{border-color:#c8b185;color:#ece4d3;background:rgba(255,255,255,0.02);}
+  button.primary{background:#c8b185;color:#0b0a09;border:none;font-weight:600;}
+  button.primary:hover{background:#dfc28d;color:#0b0a09;}
+  .infobar{text-align:center;font-size:11.5px;color:#7a6e5e;min-height:18px;font-family:'JetBrains Mono',monospace;padding:12px 20px;letter-spacing:.04em;}
+  .infobar b{color:#c8b185;}
 
-  .conn-line{stroke:#262114;stroke-width:1.8;fill:none;stroke-linecap:round;transition: all 0.3s ease;}
-  .conn-line.active{stroke:#4a3e1e;}
-  .conn-line.won{stroke:#cda434;stroke-width:2.2;}
+  @keyframes flow {
+    to {
+      stroke-dashoffset: -20;
+    }
+  }
+
+  .conn-line{stroke:#1f1b14;stroke-width:1.6;fill:none;stroke-linecap:round;transition: all 0.3s ease;}
+  .conn-line.active{stroke:#382f17;}
+  .conn-line.won{stroke:#c8b185;stroke-width:1.6;}
   .conn-line.highlighted {
-    stroke: #f0c14b !important;
-    stroke-width: 3.8px !important;
-    filter: drop-shadow(0 0 4px rgba(240, 193, 75, 0.7));
+    stroke: #c8b185 !important;
+    stroke-width: 2.0px !important;
+    stroke-dasharray: 6 3;
+    animation: flow 0.8s linear infinite;
     opacity: 1 !important;
   }
   .conn-line.dimmed {
     opacity: 0.12 !important;
   }
 
-  .bracket-dot{fill:#181410;stroke:#2e2a1a;stroke-width:1.4;transition: all 0.3s ease;}
-  .bracket-dot.won{fill:#2a2008;stroke:#cda434;}
+  .bracket-dot{fill:#12100b;stroke:#262217;stroke-width:1.2;transition: all 0.3s ease;}
+  .bracket-dot.won{fill:#1c170d;stroke:#c8b185;}
   .bracket-dot.highlighted {
-    fill: #1e1a08 !important;
-    stroke: #f0c14b !important;
-    stroke-width: 2.5px !important;
-    filter: drop-shadow(0 0 6px rgba(240, 193, 75, 0.8));
+    fill: #1c170d !important;
+    stroke: #c8b185 !important;
+    stroke-width: 1.8px !important;
   }
   .highlighted-flag-border {
-    stroke: #f0c14b !important;
-    stroke-width: 3px !important;
-    filter: drop-shadow(0 0 8px rgba(240, 193, 75, 0.85));
+    stroke: #c8b185 !important;
+    stroke-width: 2.0px !important;
   }
   .editable-flag-border {
-    stroke: #cda434 !important;
-    stroke-dasharray: 4, 3;
-    stroke-width: 2.2px !important;
-    filter: drop-shadow(0 0 4px rgba(205, 164, 52, 0.4));
+    stroke: #c8b185 !important;
+    stroke-dasharray: 4 3;
+    stroke-width: 1.6px !important;
   }
 
   .probs{max-width:960px;margin:30px auto 60px;padding:0 20px;}
-  .probs h2{font-family:'Oswald',sans-serif;font-size:22px;text-align:center;color:#ece4d3;margin-bottom:16px;font-weight:600;letter-spacing: 0.05em;text-transform: uppercase;}
+  .probs h2{font-family:'Syne',sans-serif;font-size:22px;text-align:center;color:#ece4d3;margin-bottom:16px;font-weight:700;letter-spacing: -0.01em;text-transform: uppercase;}
   .probs .sub2{text-align:center;color:#7a6e5e;font-size:12px;margin-bottom:18px;font-family:'JetBrains Mono',monospace;}
-  table{width:100%;border-collapse:collapse;font-size:12.5px;}
-  thead th{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#cda434;text-align:left;padding:7px 8px;border-bottom:1px solid #2e2a22;}
-  tbody td{padding:7px 8px;border-bottom:1px solid #181510;}
-  tbody tr:hover{background:rgba(205,164,52,0.05);}
-  .bar{height:5px;background:#1e1a11;border-radius:3px;overflow:hidden;width:100%;max-width:140px;}
-  .bar i{display:block;height:100%;background:linear-gradient(90deg,#7a5a14,#f0c14b);}
+  table{width:100%;border-collapse:collapse;font-size:13px;font-family:'Outfit',sans-serif;}
+  thead th{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#c8b185;text-align:left;padding:10px 8px;border-bottom:1px solid rgba(255,255,255,0.06);}
+  tbody td{padding:10px 8px;border-bottom:1px solid rgba(255, 255, 255, 0.02);color:#cbbfa8;}
+  tbody tr:hover{background:rgba(200,177,133,0.03);}
+  .bar{height:4px;background:rgba(255,255,255,0.04);border-radius:2px;overflow:hidden;width:100%;max-width:140px;}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,#8c7e6c,#c8b185);}
   td.rank{font-family:'JetBrains Mono',monospace;color:#7a6e5e;}
-  td.team{font-weight:600;}
-  td.pct{font-family:'JetBrains Mono',monospace;color:#f0c14b;}
+  td.team{font-weight:600;color:#ece4d3;}
+  td.pct{font-family:'JetBrains Mono',monospace;color:#c8b185;font-weight:600;}
+
+  .bracket-layout {
+    display: flex;
+    max-width: 1240px;
+    margin: 0 auto;
+    gap: 40px;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 20px;
+  }
+  .bracket-left {
+    flex: 1;
+    max-width: 860px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .bracket-right {
+    width: 320px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 20px;
+  }
+  @media (max-width: 1024px) {
+    .bracket-layout {
+      flex-direction: column;
+      align-items: center;
+    }
+    .bracket-right {
+      width: 100%;
+      max-width: 450px;
+      position: static;
+      margin-top: 30px;
+    }
+  }
 
   #canvas-wrap {
     position: relative;
@@ -83,48 +148,85 @@
     justify-content: center;
     align-items: center;
     padding: 8px 0 24px;
-    max-width: 960px;
-    margin: 0 auto;
+    width: 100%;
   }
   #bracket-svg {
-    width: min(96vw, 960px);
-    height: min(96vw, 960px);
+    width: min(96vw, 860px);
+    height: min(96vw, 860px);
   }
 
-  .profile-card {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 290px;
-    background: linear-gradient(145deg, rgba(22, 19, 14, 0.96), rgba(13, 11, 8, 0.99));
-    border: 1px solid rgba(205, 164, 52, 0.25);
+
+  .profile-sidebar {
+    width: 100%;
+    background: rgba(14, 12, 9, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.04);
     border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.85), inset 0 1px 1px rgba(255,255,255,0.05);
-    z-index: 1000;
-    pointer-events: none;
-    transition: opacity 0.15s ease;
-    opacity: 0;
+    padding: 24px 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    min-height: 380px;
+  }
+  
+  .sidebar-placeholder {
+    text-align: center;
+    color: #8c7e6c;
+    font-size: 13px;
+    line-height: 1.6;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     justify-content: center;
   }
-  .profile-card.active {
-    opacity: 1;
-  }
-  .placeholder-msg {
-    text-align: center;
-    color: #7a6e5e;
-    font-size: 13.5px;
-    line-height: 1.6;
-  }
-  .placeholder-msg h3 {
-    font-family: 'Oswald', sans-serif;
+  .sidebar-placeholder h3 {
+    font-family: 'Syne', sans-serif;
     color: #ece4d3;
-    font-size: 18px;
-    margin-bottom: 8px;
-    letter-spacing: 0.05em;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
     text-transform: uppercase;
+  }
+  .legend-box {
+    margin-top: 32px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    text-align: left;
+  }
+  .legend-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: #c8b185;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .legend-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11.5px;
+    margin-bottom: 6px;
+    color: #8c7e6c;
+  }
+  .legend-row:last-child {
+    margin-bottom: 0;
+  }
+  .legend-bullet {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .legend-bullet.select {
+    background: #c8b185;
+  }
+  .legend-bullet.hover {
+    border: 1px dashed #c8b185;
   }
 
   .profile-header {
@@ -132,42 +234,34 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
   .profile-flag-img {
     width: 68px;
     height: 68px;
     border-radius: 50%;
-    border: 2px solid #cda434;
-    box-shadow: 0 4px 15px rgba(205, 164, 52, 0.3);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
     margin-bottom: 10px;
   }
   .profile-team-name {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 800;
     color: #ece4d3;
-    letter-spacing: 0.03em;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
-    text-shadow: 0 0 20px rgba(205,164,52,0.25);
-  }
-  .profile-stars {
-    font-size: 14px;
-    color: #f0c14b;
-    margin-top: 4px;
-    letter-spacing: 2px;
   }
   .profile-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
     margin-bottom: 16px;
   }
   .profile-stat {
-    background: rgba(30, 26, 18, 0.5);
-    border: 1px solid rgba(205, 164, 52, 0.08);
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.03);
     border-radius: 6px;
-    padding: 8px;
+    padding: 10px 4px;
     text-align: center;
   }
   .profile-stat-lbl {
@@ -176,36 +270,37 @@
     color: #7a6e5e;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
   }
   .profile-stat-val {
-    font-family: 'Oswald', sans-serif;
-    font-size: 18px;
-    color: #f0c14b;
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    color: #c8b185;
     font-weight: 600;
   }
   .profile-players-lbl {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    color: #cda434;
+    font-size: 9.5px;
+    color: #c8b185;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    border-bottom: 1px solid rgba(205,164,52,0.15);
-    padding-bottom: 4px;
-    margin-bottom: 8px;
+    letter-spacing: 0.12em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 6px;
+    margin-top: 12px;
+    margin-bottom: 10px;
   }
   .profile-player-item {
-    font-size: 12.5px;
-    color: #ece4d3;
-    padding: 3px 0;
+    font-size: 13px;
+    color: #cbbfa8;
+    padding: 4px 0;
     display: flex;
     align-items: center;
   }
   .profile-player-item::before {
-    content: "★";
-    margin-right: 8px;
-    font-size: 10px;
-    color: #cda434;
+    content: "•";
+    margin-right: 10px;
+    font-size: 12px;
+    color: #c8b185;
   }
 
   .matchup-header {
@@ -691,40 +786,44 @@
   .tabs {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    margin: 10px auto 20px;
-    max-width: 600px;
-    border-bottom: 1px solid rgba(205, 164, 52, 0.15);
-    padding-bottom: 8px;
+    gap: 16px;
+    margin: 15px auto 25px;
+    max-width: 650px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    padding-bottom: 0;
   }
   .tab-btn {
     background: transparent;
     border: none;
-    color: #7a6e5e;
-    font-family: 'Oswald', sans-serif;
-    font-size: 13px;
+    color: #706555;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 12.5px;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 6px 16px;
+    letter-spacing: 0.08em;
+    padding: 10px 16px;
     cursor: pointer;
     position: relative;
-    transition: all 0.2s ease;
+    transition: color 0.3s ease;
   }
   .tab-btn:hover {
     color: #ece4d3;
   }
   .tab-btn.active {
-    color: #f0c14b;
+    color: #cda434;
   }
-  .tab-btn.active::after {
+  .tab-btn::after {
     content: '';
     position: absolute;
-    bottom: -9px;
+    bottom: -1px;
     left: 0;
-    width: 100%;
+    width: 0;
     height: 2px;
     background: #cda434;
-    box-shadow: 0 0 8px rgba(205, 164, 52, 0.6);
+    transition: width 0.3s ease;
+  }
+  .tab-btn.active::after {
+    width: 100%;
   }
 
   .victory-section {
@@ -949,8 +1048,9 @@
 </head>
 <body>
 <header>
-  <h1>Knockout Bracket Simulator</h1>
-  <p class="sub">Click a team to advance them · or use the controls to simulate</p>
+  <div class="eyebrow">2026 Knockout Predictor</div>
+  <h1>FIFA WORLD CUP</h1>
+  <p class="sub">Select your champions. Chart the path to glory.</p>
 </header>
 <div class="tabs">
   <button class="tab-btn active" id="tabBracket">Bracket Wheel</button>
@@ -976,55 +1076,59 @@
     <button id="btnManualEdit" class="small-btn">Manual Swap</button>
     <button id="btnRestoreOriginal" class="small-btn" style="border-color:#cda434; color:#f0c14b;">Original Fixtures</button>
   </div>
-  <div class="infobar" id="infobar">Tap a team to advance them, or hit Simulate.</div>
+  <div class="bracket-layout">
+    <div class="bracket-left">
+      <div class="infobar" id="infobar">Select your champions. Chart the path to glory.</div>
+      <div id="canvas-wrap">
+      <svg id="bracket-svg" viewBox="-480 -480 960 960" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+          <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#c8b185" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#c8b185" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="5" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="softglow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
 
-  <div id="canvas-wrap">
-  <svg id="bracket-svg" viewBox="-480 -480 960 960" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>
-      <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#c08010" stop-opacity="0.22"/>
-        <stop offset="50%" stop-color="#7a5010" stop-opacity="0.07"/>
-        <stop offset="100%" stop-color="#000" stop-opacity="0"/>
-      </radialGradient>
-      <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#d4a020" stop-opacity="0.4"/>
-        <stop offset="70%" stop-color="#8a6010" stop-opacity="0.1"/>
-        <stop offset="100%" stop-color="#000" stop-opacity="0"/>
-      </radialGradient>
-      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="5" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-      <filter id="softglow" x="-30%" y="-30%" width="160%" height="160%">
-        <feGaussianBlur stdDeviation="3" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-    </defs>
+        <circle cx="0" cy="0" r="480" fill="none"/>
+        <circle cx="0" cy="0" r="180" fill="url(#centerGlow)"/>
 
-    <circle cx="0" cy="0" r="480" fill="url(#bgGlow)"/>
-    <circle cx="0" cy="0" r="180" fill="url(#centerGlow)"/>
+        <circle cx="0" cy="0" r="390" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+        <circle cx="0" cy="0" r="300" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+        <circle cx="0" cy="0" r="220" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+        <circle cx="0" cy="0" r="148" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+        <circle cx="0" cy="0" r="82" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
 
-    <circle cx="0" cy="0" r="390" fill="none" stroke="#1c1810" stroke-width="1"/>
-    <circle cx="0" cy="0" r="300" fill="none" stroke="#1c1810" stroke-width="1"/>
-    <circle cx="0" cy="0" r="220" fill="none" stroke="#1c1810" stroke-width="1"/>
-    <circle cx="0" cy="0" r="148" fill="none" stroke="#1c1810" stroke-width="1"/>
-    <circle cx="0" cy="0" r="82" fill="none" stroke="#1c1810" stroke-width="1"/>
+        <g id="lines-layer"></g>
+        <g id="nodes-layer"></g>
+        <g id="teams-layer"></g>
 
-    <g id="lines-layer"></g>
-    <g id="nodes-layer"></g>
-    <g id="teams-layer"></g>
-
-    <g id="center-g">
-      <circle cx="0" cy="0" r="60" fill="#0c0a06" stroke="#3a3010" stroke-width="1.5"/>
-      <circle cx="0" cy="0" r="52" fill="none" stroke="#4a3e14" stroke-width="1" opacity="0.6"/>
-      <text x="0" y="-12" font-size="28" fill="#f0c14b" text-anchor="middle" dominant-baseline="central">★</text>
-      <text x="0" y="14" font-family="'JetBrains Mono',monospace" font-size="7" fill="#8a7232" letter-spacing="3" text-anchor="middle" dominant-baseline="central">CHAMPION</text>
-      <g id="champ-flag-container"></g>
-      <text x="0" y="44" id="champ-name-svg" font-family="'Oswald',sans-serif" font-size="10.5" font-weight="700" fill="#f0c14b" text-anchor="middle" dominant-baseline="central"></text>
-    </g>
-    <g id="tooltip-layer"></g>
-  </svg>
-  <div class="profile-card" id="profileCard"></div>
+        <g id="center-g">
+          <circle cx="0" cy="0" r="60" fill="#0b0a09" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1"/>
+          <circle cx="0" cy="0" r="52" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+          <text x="0" y="-12" font-size="28" fill="#c8b185" text-anchor="middle" dominant-baseline="central">★</text>
+          <text x="0" y="14" font-family="'JetBrains Mono',monospace" font-size="7" fill="#8c7e6c" letter-spacing="3" text-anchor="middle" dominant-baseline="central">CHAMPION</text>
+          <g id="champ-flag-container"></g>
+          <text x="0" y="44" id="champ-name-svg" font-family="'Outfit',sans-serif" font-size="10.5" font-weight="600" fill="#c8b185" text-anchor="middle" dominant-baseline="central"></text>
+        </g>
+        <g id="tooltip-layer"></g>
+      </svg>
+      </div>
+    </div>
+    
+    <div class="bracket-right">
+      <div class="profile-sidebar" id="profileCard"></div>
+    </div>
   </div>
 </div>
 
@@ -2161,7 +2265,7 @@ document.getElementById('btnManualEdit').addEventListener('click', () => {
   } else {
     btn.textContent = "Manual Swap";
     btn.classList.remove('primary');
-    infobar.textContent = "Tap a team to advance them, or hit Simulate.";
+    infobar.textContent = "Select your champions. Chart the path to glory.";
   }
   render();
 });
@@ -2186,7 +2290,6 @@ function showTeamProfile(teamName) {
   const card = document.getElementById('profileCard');
   if (!card) return;
 
-  card.classList.add('active');
   card.innerHTML = `
     <div class="profile-header">
       <img class="profile-flag-img" src="https://hatscripts.github.io/circle-flags/flags/${t.code}.svg">
@@ -2202,7 +2305,7 @@ function showTeamProfile(teamName) {
         <div class="profile-stat-val">${t.elo}</div>
       </div>
       <div class="profile-stat">
-        <div class="profile-stat-lbl">WC Titles</div>
+        <div class="profile-stat-lbl">Titles</div>
         <div class="profile-stat-val">${t.titles}</div>
       </div>
     </div>
@@ -2216,33 +2319,24 @@ function showTeamProfile(teamName) {
 function resetProfileCard() {
   const card = document.getElementById('profileCard');
   if (!card) return;
-  card.classList.remove('active');
+  card.innerHTML = `
+    <div class="sidebar-placeholder">
+      <h3>Tournament Explorer</h3>
+      <p>Hover over any team flag on the circular wheel to inspect their squad, FIFA rankings, Elo rating, and championship history.</p>
+      <div class="legend-box">
+        <div class="legend-title">Interactive Guide</div>
+        <div class="legend-row">
+          <span class="legend-bullet select"></span>
+          <span>Click flag to advance team</span>
+        </div>
+        <div class="legend-row">
+          <span class="legend-bullet hover"></span>
+          <span>Hover flag to trace path</span>
+        </div>
+      </div>
+    </div>
+  `;
 }
-
-document.addEventListener('mousemove', (e) => {
-  const card = document.getElementById('profileCard');
-  if (!card || !card.classList.contains('active')) return;
-
-  const w = card.offsetWidth || 290;
-  const h = card.offsetHeight || 300;
-
-  let x = e.clientX + 15;
-  let y = e.clientY - 40;
-
-  if (x + w > window.innerWidth) {
-    x = e.clientX - w - 15;
-  }
-
-  if (y + h > window.innerHeight) {
-    y = window.innerHeight - h - 15;
-  }
-  if (y < 15) {
-    y = 15;
-  }
-
-  card.style.left = x + 'px';
-  card.style.top = y + 'px';
-});
 
 function getExactProbs() {
   const teamList = [];
@@ -2523,11 +2617,13 @@ fetch('results.json?t=' + Date.now())
     freshBracket();
     loadSavedBracket();
     renderLeaderboard();
+    resetProfileCard();
     render();
   })
   .catch(() => {
     loadSavedBracket();
     renderLeaderboard();
+    resetProfileCard();
     render();
   });
 </script>
