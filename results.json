@@ -17,6 +17,15 @@
       "awayScore": 1,
       "homeScoreRaw": "2",
       "awayScoreRaw": "1"
+    },
+    "3": {
+      "winner": "Norway",
+      "home": "C\u00f4te d'Ivoire",
+      "away": "Norway",
+      "homeScore": 1,
+      "awayScore": 2,
+      "homeScoreRaw": "1",
+      "awayScoreRaw": "2"
     }
   }
 }
