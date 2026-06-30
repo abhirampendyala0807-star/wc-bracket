@@ -26,6 +26,15 @@
       "awayScore": 2,
       "homeScoreRaw": "1",
       "awayScoreRaw": "2"
+    },
+    "0": {
+      "winner": "France",
+      "home": "France",
+      "away": "Sweden",
+      "homeScore": 3,
+      "awayScore": 0,
+      "homeScoreRaw": "3",
+      "awayScoreRaw": "0"
     }
   }
 }
