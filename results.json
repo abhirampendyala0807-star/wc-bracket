@@ -35,6 +35,15 @@
       "awayScore": 0,
       "homeScoreRaw": "3",
       "awayScoreRaw": "0"
+    },
+    "4": {
+      "winner": "Mexico",
+      "home": "Mexico",
+      "away": "Ecuador",
+      "homeScore": 2,
+      "awayScore": 0,
+      "homeScoreRaw": "2",
+      "awayScoreRaw": "0"
     }
   }
 }
