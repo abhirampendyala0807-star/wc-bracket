@@ -62,6 +62,15 @@
       "awayScore": 2,
       "homeScoreRaw": "3",
       "awayScoreRaw": "2"
+    },
+    "11": {
+      "winner": "USA",
+      "home": "USA",
+      "away": "Bosnia & Herz.",
+      "homeScore": 2,
+      "awayScore": 0,
+      "homeScoreRaw": "2",
+      "awayScoreRaw": "0"
     }
   }
 }
