@@ -71,6 +71,15 @@
       "awayScore": 0,
       "homeScoreRaw": "2",
       "awayScoreRaw": "0"
+    },
+    "12": {
+      "winner": "Spain",
+      "home": "Spain",
+      "away": "Austria",
+      "homeScore": 3,
+      "awayScore": 0,
+      "homeScoreRaw": "3",
+      "awayScoreRaw": "0"
     }
   }
 }
