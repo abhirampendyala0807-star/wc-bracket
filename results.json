@@ -98,6 +98,24 @@
       "awayScore": 0,
       "homeScoreRaw": "2",
       "awayScoreRaw": "0"
+    },
+    "1": {
+      "winner": "Paraguay",
+      "home": "Germany",
+      "away": "Paraguay",
+      "homeScore": 1,
+      "awayScore": 1,
+      "homeScoreRaw": "1",
+      "awayScoreRaw": "1"
+    },
+    "14": {
+      "winner": "Morocco",
+      "home": "Netherlands",
+      "away": "Morocco",
+      "homeScore": 1,
+      "awayScore": 1,
+      "homeScoreRaw": "1",
+      "awayScoreRaw": "1"
     }
   }
 }
