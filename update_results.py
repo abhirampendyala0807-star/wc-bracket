@@ -119,8 +119,20 @@ def main():
             elif as_score > hs:
                 winner = away_team
             else:
-                # Tiebreaker parsing for penalty shootouts: "1(4)"
-                if '(' in home_score_str and '(' in away_score_str:
+                h_pen_raw = game.get('home_penalty_score')
+                a_pen_raw = game.get('away_penalty_score')
+                if h_pen_raw is not None and a_pen_raw is not None and str(h_pen_raw).upper() != 'NULL' and str(a_pen_raw).upper() != 'NULL':
+                    try:
+                        h_pen = int(h_pen_raw)
+                        a_pen = int(a_pen_raw)
+                        if h_pen > a_pen:
+                            winner = home_team
+                        elif a_pen > h_pen:
+                            winner = away_team
+                    except Exception:
+                        pass
+                
+                if not winner and '(' in home_score_str and '(' in away_score_str:
                     try:
                         h_pen = int(home_score_str.split('(')[1].replace(')', '').strip())
                         a_pen = int(away_score_str.split('(')[1].replace(')', '').strip())
