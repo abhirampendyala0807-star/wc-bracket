@@ -67,7 +67,7 @@ def find_bracket_match(team_a, team_b):
 def main():
     try:
         ctx = ssl._create_unverified_context()
-        req = urllib.request.Request('https://worldcup26.ir/get/games', headers={'User-Agent': 'Mozilla/5.0'})
+        req = urllib.request.Request('https://worldcup26.ir/get/games', headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'})
         with urllib.request.urlopen(req, context=ctx) as res:
             data = json.loads(res.read().decode('utf-8'))
         
