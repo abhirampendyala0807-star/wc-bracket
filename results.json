@@ -116,6 +116,15 @@
       "awayScore": 1,
       "homeScoreRaw": "1",
       "awayScoreRaw": "1"
+    },
+    "7": {
+      "winner": "Egypt",
+      "home": "Australia",
+      "away": "Egypt",
+      "homeScore": 1,
+      "awayScore": 1,
+      "homeScoreRaw": "1",
+      "awayScoreRaw": "1"
     }
   }
 }
