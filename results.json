@@ -89,6 +89,15 @@
       "awayScore": 1,
       "homeScoreRaw": "2",
       "awayScoreRaw": "1"
+    },
+    "8": {
+      "winner": "Switzerland",
+      "home": "Switzerland",
+      "away": "Algeria",
+      "homeScore": 2,
+      "awayScore": 0,
+      "homeScoreRaw": "2",
+      "awayScoreRaw": "0"
     }
   }
 }
