@@ -80,6 +80,15 @@
       "awayScore": 0,
       "homeScoreRaw": "3",
       "awayScoreRaw": "0"
+    },
+    "13": {
+      "winner": "Portugal",
+      "home": "Portugal",
+      "away": "Croatia",
+      "homeScore": 2,
+      "awayScore": 1,
+      "homeScoreRaw": "2",
+      "awayScoreRaw": "1"
     }
   }
 }
