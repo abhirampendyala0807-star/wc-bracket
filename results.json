@@ -144,5 +144,16 @@
       "homeScoreRaw": "1",
       "awayScoreRaw": "0"
     }
+  },
+  "1": {
+    "7": {
+      "winner": "Morocco",
+      "home": "Canada",
+      "away": "Morocco",
+      "homeScore": 0,
+      "awayScore": 3,
+      "homeScoreRaw": "0",
+      "awayScoreRaw": "3"
+    }
   }
 }
