@@ -154,6 +154,15 @@
       "awayScore": 3,
       "homeScoreRaw": "0",
       "awayScoreRaw": "3"
+    },
+    "0": {
+      "winner": "France",
+      "home": "Paraguay",
+      "away": "France",
+      "homeScore": 0,
+      "awayScore": 1,
+      "homeScoreRaw": "0",
+      "awayScoreRaw": "1"
     }
   }
 }
