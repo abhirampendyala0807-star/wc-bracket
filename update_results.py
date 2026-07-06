@@ -14,20 +14,20 @@ SIM_TEAMS = [
 ORIGINAL_R32 = [
     ["Sweden","France"],       # 0
     ["Paraguay","Germany"],    # 1
-    ["Brazil","Japan"],        # 2
-    ["Côte d'Ivoire","Norway"],# 3
-    ["Mexico","Ecuador"],      # 4
-    ["England","DR Congo"],    # 5
-    ["Argentina","Cape Verde"],# 6
-    ["Australia","Egypt"],     # 7
-    ["Switzerland","Algeria"], # 8
-    ["Colombia","Ghana"],      # 9
-    ["Senegal","Belgium"],     # 10
-    ["Bosnia & Herz.","USA"],  # 11
-    ["Austria","Spain"],       # 12
-    ["Croatia","Portugal"],    # 13
-    ["Morocco","Netherlands"], # 14
-    ["South Africa","Canada"], # 15
+    ["Morocco","Netherlands"], # 2
+    ["South Africa","Canada"], # 3
+    ["Croatia","Portugal"],    # 4
+    ["Austria","Spain"],       # 5
+    ["Senegal","Belgium"],     # 6
+    ["Bosnia & Herz.","USA"],  # 7
+    ["Brazil","Japan"],        # 8
+    ["Côte d'Ivoire","Norway"],# 9
+    ["Mexico","Ecuador"],      # 10
+    ["England","DR Congo"],    # 11
+    ["Argentina","Cape Verde"],# 12
+    ["Australia","Egypt"],     # 13
+    ["Switzerland","Algeria"], # 14
+    ["Colombia","Ghana"],      # 15
 ]
 
 def map_team_name(api_name):
