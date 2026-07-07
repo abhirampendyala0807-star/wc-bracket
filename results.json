@@ -190,6 +190,15 @@
       "awayScore": 1,
       "homeScoreRaw": "0",
       "awayScoreRaw": "1"
+    },
+    "3": {
+      "winner": "Belgium",
+      "home": "USA",
+      "away": "Belgium",
+      "homeScore": 1,
+      "awayScore": 4,
+      "homeScoreRaw": "1",
+      "awayScoreRaw": "4"
     }
   }
 }
