@@ -1782,7 +1782,7 @@ function deserializeBracket(s) {
 
 function saveBracket() {
   const code = serializeBracket();
-  localStorage.setItem("wc_circular_bracket", code);
+  localStorage.setItem("wc_circular_bracket_v2", code);
 }
 
 function loadSavedBracket() {
@@ -1797,7 +1797,7 @@ function loadSavedBracket() {
     }
   }
 
-  const saved = localStorage.getItem("wc_circular_bracket");
+  const saved = localStorage.getItem("wc_circular_bracket_v2");
   if (saved) {
     deserializeBracket(saved);
     applyRealWinners();
