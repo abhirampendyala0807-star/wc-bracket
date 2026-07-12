@@ -1683,7 +1683,7 @@ function runMonteCarlo(n=5000){
     for(let r=1;r<5;r++){b.push(new Array(b[r-1].length/2).fill(null).map(()=>[null,null]));w.push(new Array(counts[r]).fill(null));}
     for(let r=0;r<5;r++){
       if(REAL_WINNERS[r]){
-        for(let[m,ww] of Object.entries(REAL_WINNERS[r]))w[r][+m]=ww;
+        for(let[m,ww] of Object.entries(REAL_WINNERS[r]))w[r][+m] = (ww && typeof ww === 'object') ? ww.winner : ww;
       }
     }
     for(let r=0;r<5;r++){
