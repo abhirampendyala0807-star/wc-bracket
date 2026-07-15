@@ -266,6 +266,15 @@
       "awayScore": 2,
       "homeScoreRaw": "0",
       "awayScoreRaw": "2"
+    },
+    "1": {
+      "winner": "Argentina",
+      "home": "England",
+      "away": "Argentina",
+      "homeScore": 1,
+      "awayScore": 2,
+      "homeScoreRaw": "1",
+      "awayScoreRaw": "2"
     }
   }
 }
